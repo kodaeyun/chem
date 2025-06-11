@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화학1 원소 퀴즈</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="container">
+                <h1>화학1 원소 퀴즈</h1>
+                <p>원소 1-20번 종합 학습</p>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- Mode Selection -->
+            <div class="mode-selector">
+                <h2>모드 선택</h2>
+                <div class="mode-buttons">
+                    <button class="btn mode-btn" data-mode="period-group">
+                        <span>주기/족 모드</span>
+                        <small>원소기호 → 주기, 족</small>
+                    </button>
+                    <button class="btn mode-btn" data-mode="orbital">
+                        <span>오비탈 모드</span>
+                        <small>원소기호 → s, p, 홀전자수</small>
+                    </button>
+                    <button class="btn mode-btn" data-mode="ionization">
+                        <span>이온화에너지 모드</span>
+                        <small>두 원소 중 더 큰 것 선택</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Area -->
+            <div class="game-area hidden">
+                <!-- Current Mode Info -->
+                <div class="mode-info">
+                    <div class="current-mode">
+                        <span class="mode-name"></span>
+                        <button class="btn btn--sm btn--outline change-mode-btn">모드 변경</button>
+                    </div>
+                    <div class="score-info">
+                        <div class="score-item">
+                            <span class="score-label">현재 점수</span>
+                            <span class="score-value" id="current-score">0/0</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="score-label">정답률</span>
+                            <span class="score-value" id="accuracy">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Area -->
+                <div class="question-area">
+                    <div class="question-card card">
+                        <div class="card__body">
+                            <h3 class="question-title"></h3>
+                            <div class="question-content"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Answer Area -->
+                <div class="answer-area">
+                    <!-- Period/Group Mode -->
+                    <div class="answer-section period-group-answer hidden">
+                        <div class="input-group">
+                            <div class="form-group">
+                                <label class="form-label">주기</label>
+                                <input type="number" class="form-control" id="period-input" min="1" max="4">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">족</label>
+                                <input type="number" class="form-control" id="group-input" min="1" max="18">
+                            </div>
+                        </div>
+                        <button class="btn btn--primary submit-btn">답 확인</button>
+                    </div>
+
+                    <!-- Orbital Mode -->
+                    <div class="answer-section orbital-answer hidden">
+                        <div class="input-group">
+                            <div class="form-group">
+                                <label class="form-label">s오비탈에 들어있는 전자수</label>
+                                <input type="number" class="form-control" id="s-electrons-input" min="0" max="8">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">p오비탈에 들어있는 전자수</label>
+                                <input type="number" class="form-control" id="p-electrons-input" min="0" max="12">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">홀전자수</label>
+                                <input type="number" class="form-control" id="unpaired-input" min="0" max="4">
+                            </div>
+                        </div>
+                        <button class="btn btn--primary submit-btn">답 확인</button>
+                    </div>
+
+                    <!-- Ionization Energy Mode -->
+                    <div class="answer-section ionization-answer hidden">
+                        <div class="ionization-options">
+                            <button class="btn btn--outline ionization-option" data-choice="0"></button>
+                            <button class="btn btn--outline ionization-option" data-choice="1"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Area -->
+                <div class="result-area hidden">
+                    <div class="result-card card">
+                        <div class="card__body">
+                            <div class="result-content">
+                                <div class="result-status"></div>
+                                <div class="result-explanation"></div>
+                            </div>
+                            <button class="btn btn--primary next-btn">다음 문제</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-area">
+                <h3>모드별 통계</h3>
+                <div class="stats-grid">
+                    <div class="stat-card card">
+                        <div class="card__body">
+                            <h4>주기/족 모드</h4>
+                            <div class="stat-value" id="period-group-stats">0/0 (0%)</div>
+                        </div>
+                    </div>
+                    <div class="stat-card card">
+                        <div class="card__body">
+                            <h4>오비탈 모드</h4>
+                            <div class="stat-value" id="orbital-stats">0/0 (0%)</div>
+                        </div>
+                    </div>
+                    <div class="stat-card card">
+                        <div class="card__body">
+                            <h4>이온화에너지 모드</h4>
+                            <div class="stat-value" id="ionization-stats">0/0 (0%)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
